@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flordotro – Modern Floral Artistry</title>
+    <meta name="description" content="Discover Flordotro's minimalist floral arrangements and exquisite botanical designs. Elevate your space with timeless elegance.">
+    <meta name="keywords" content="Flordotro, floral design, minimalist flowers, luxury bouquets, botanical art, modern floral, flower delivery, unique arrangements">
+    
+    <!-- Favicon (simple, elegant flower emoji placeholder) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+
+    <!-- Google Fonts - Inter for modern, clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWTFoEw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Tailwind CSS CDN for utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS for minimalist design and brand specifics -->
+    <style>
+        :root {
+            /* Colors extracted from the new dahlia image (ChatGPT Image Aug 14, 2025, 08_16_16 PM.jpg) */
+            --flordotro-dark-bg: #2c3e50; /* Deep teal-green from image background */
+            --flordotro-petal-fuchsia: #e74c3c; /* Vibrant fuchsia from outer petals */
+            --flordotro-petal-orange: #f39c12; /* Bright orange from middle petals */
+            --flordotro-petal-yellow: #f1c40f; /* Sunny yellow from flower center */
+
+            /* General text and background colors */
+            --flordotro-light-text: #F0F0F0; /* Light text for dark backgrounds */
+            --flordotro-dark-text: #1a1a1a; /* Dark text for light backgrounds */
+            --flordotro-medium-text: #555555; /* Medium grey for paragraphs */
+            --flordotro-light-bg: #ecf0f1; /* Very light, almost white background */
+            --flordotro-border-light: #e0e0e0; /* Light border color */
+            --flordotro-card-shadow: rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--flordotro-dark-text);
+            background-color: var(--flordotro-light-bg);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Utility classes for consistency and readability */
+        .container {
+            max-width: 1280px; /* Slightly wider container */
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 800; /* Bolder headings by default */
+            color: var(--flordotro-dark-text);
+        }
+
+        /* Header / Navbar Styling */
+        .header-nav {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--flordotro-border-light);
+            position: sticky;
+            top: 0;
+            /* Using the new dark background with a subtle gradient */
+            background: var(--flordotro-dark-bg); /* Darker shade of dark-bg for gradient end */
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Stronger shadow for dark header */
+        }
+        .nav-link {
+            font-weight: 600; /* Bolder nav links */
+            color: var(--flordotro-light-text) !important; /* Light text for dark header */
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+            position: relative; /* For underline animation */
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background-color: var(--flordotro-petal-fuchsia); /* Fuchsia underline accent */
+            bottom: -5px; /* Position below text */
+            left: 0;
+            transition: width 0.3s ease-out;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link:hover {
+            color: var(--flordotro-petal-fuchsia) !important; /* Fuchsia on hover */
+        }
+        .nav-link.active {
+            color: var(--flordotro-petal-fuchsia) !important;
+        }
+        .header-logo {
+            font-size: 2rem; /* Larger logo */
+            font-weight: 900; /* Extra bold */
+            letter-spacing: 0.08em; /* Tighter letter spacing for elegance */
+            text-transform: uppercase;
+            color: var(--flordotro-light-text); /* Light text for dark header */
+        }
+        .header-nav .fa-search,
+        .header-nav .fa-shopping-bag,
+        .header-nav .fa-bars {
+            color: var(--flordotro-light-text); /* Light icons for dark header */
+            transition: color 0.3s ease;
+        }
+        .header-nav .fa-search:hover,
+        .header-nav .fa-shopping-bag:hover,
+        .header-nav .fa-bars:hover {
+            color: var(--flordotro-petal-fuchsia); /* Fuchsia on icon hover */
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Taller for greater impact */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #fefefe; /* Fallback for image loading */
+        }
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            filter: brightness(0.8) contrast(1.1); /* Slightly darker and more contrast for visual pop */
+            transition: filter 0.5s ease-in-out; /* Smooth transition for any future effects */
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4); /* Darker overlay for text readability */
+            z-index: 5;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: #ffffff; /* White text over image */
+            text-shadow: 0 4px 20px rgba(0,0,0,0.6); /* Stronger shadow for text readability */
+            padding: 2rem; /* More padding on small screens */
+        }
+        .hero-content h1 {
+            font-size: 6rem; /* Even larger heading */
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: inherit;
+            letter-spacing: -0.04em; /* Tighten letter spacing for large titles */
+        }
+        .hero-content p {
+            font-size: 1.5rem; /* Larger subheading */
+            font-weight: 400;
+            margin-bottom: 3rem;
+            color: inherit;
+            max-width: 60%; /* Constrain width for better readability */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn-main {
+            display: inline-block;
+            padding: 1.2rem 3rem; /* Larger buttons */
+            background-color: var(--flordotro-petal-fuchsia); /* Use dark background color */
+            color: var(--flordotro-light-text);
+            text-transform: uppercase;
+            font-weight: 700; /* Bolder text */
+            letter-spacing: 0.08em; /* More prominent letter spacing */
+            border-radius: 50px; /* Slightly more rounded */
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+        .btn-main:hover {
+            background-color: #c0392b; /* Slightly lighter dark */
+            transform: translateY(-3px); /* More pronounced lift */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .btn-outline-white {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            border: 2px solid #ffffff; /* Thicker border */
+            color: #ffffff;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            margin-left: 1.5rem; /* More space between buttons */
+        }
+        .btn-outline-white:hover {
+            background-color: rgba(255,255,255,0.15); /* More visible hover background */
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        /* Product Showcase Section */
+        .product-showcase-section {
+            padding: 8rem 0; /* More vertical padding */
+            /* Using a light gradient for the section background */
+            background: var(--flordotro-light-bg);
+        }
+        .section-title-center {
+            font-size: 3.5rem; /* Larger section title */
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 5rem; /* More space below title */
+            position: relative;
+        }
+        .section-title-center::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--flordotro-petal-fuchsia); /* Fuchsia underline accent */
+        }
+        .product-card {
+            background-color: #ffffff;
+            border-radius: 1rem; /* More rounded */
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2); /* More defined shadow */
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .product-card:hover {
+            transform: translateY(-15px); /* More pronounced lift */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+        .product-image {
+            width: 100%;
+            height: 400px; /* Taller images for impact */
+            object-fit: cover;
+            display: block;
+        }
+        .product-info {
+            padding: 2rem; /* More padding */
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-info h3 {
+            font-size: 1.8rem; /* Larger product titles */
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--flordotro-dark-text);
+        }
+        .product-info p {
+            font-size: 1.1rem; /* Larger description */
+            color: var(--flordotro-medium-text);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .product-price {
+            font-size: 1.4rem; /* Larger price */
+            font-weight: 800;
+            color: var(--flordotro-dark-text);
+            margin-bottom: 1.5rem;
+        }
+        .btn-shop {
+            display: inline-block;
+            padding: 0.9rem 2rem; /* Larger shop button */
+            background-color: var(--flordotro-dark-bg); /* Use dark background color */
+            color: var(--flordotro-light-text);
+            font-weight: 600;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+        .btn-shop:hover {
+            background-color: #c0392b; /* Slightly lighter dark */
+            transform: translateY(-2px);
+        }
+
+        /* Brand Philosophy Section */
+        .brand-philosophy-section {
+            padding: 8rem 0;
+            /* Using a light gradient for the section background */
+            background: var(--flordotro-light-bg);
+            text-align: center;
+        }
+        .philosophy-image {
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .brand-philosophy-section p {
+            font-size: 1.3rem; /* Larger text */
+            max-width: 900px;
+            margin: 0 auto 3.5rem auto; /* More space */
+            color: var(--flordotro-medium-text);
+        }
+
+        /* Contact Section Specifics */
+        .contact-section-content {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            padding: 3rem;
+        }
+        .contact-info-block {
+            padding: 2rem;
+            background-color: #bdc3c7;
+            border-radius: 1rem;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .contact-info-block h4 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--flordotro-dark-text);
+        }
+        .contact-info-block p {
+            margin-bottom: 0.75rem;
+            color: var(--flordotro-medium-text);
+            display: flex;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+        .contact-info-block p i {
+            font-size: 1.2rem;
+            color: var(--flordotro-dark-text);
+            margin-right: 0.8rem;
+            width: 25px;
+            flex-shrink: 0;
+        }
+        .contact-form .form-control {
+            border-radius: 0.5rem;
+            padding: 0.8rem 1rem;
+            border: 1px solid #e0e0e0;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .contact-form .form-control:focus {
+            border-color: var(--flordotro-dark-text);
+            box-shadow: 0 0 0 0.25rem rgba(44, 62, 80, 0.3);
+            outline: none;
+        }
+        /* Map placeholder removed */
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 8rem 0;
+            /* Using a light gradient for the section background */
+            background: var(--flordotro-light-bg);
+        }
+        .faq-item {
+            background-color: #ffffff;
+            border: 1px solid var(--flordotro-border-light);
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .faq-question {
+            display: block;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--flordotro-dark-text);
+            text-align: left;
+            cursor: pointer;
+            background-color: #ffffff;
+            border: none;
+            outline: none;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+        .faq-question:hover {
+            background-color: #ecf0f1;
+        }
+        .faq-question::marker { /* Hide default marker */
+            content: "";
+        }
+        .faq-question::-webkit-details-marker { /* Hide default marker for Webkit */
+            display: none;
+        }
+        .faq-question::before {
+            content: "\2b"; /* Plus icon */
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            color: var(--flordotro-dark-text); /* Ensure icon is visible */
+        }
+        .faq-item[open] .faq-question::before {
+            content: "\2212"; /* Minus icon when open */
+            transform: translateY(-50%) rotate(0deg); /* Reset rotation */
+        }
+        .faq-answer {
+            padding: 0 2rem 1.5rem 2rem;
+            font-size: 1.05rem;
+            color: var(--flordotro-medium-text);
+            border-top: 1px solid var(--flordotro-border-light);
+            margin-top: -1px; /* Overlap border for clean look */
+        }
+        details[open] summary ~ * {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer Styling */
+        .footer {
+            padding: 4rem 0; /* More padding */
+            background: var(--flordotro-dark-bg); /* Subtle gradient for eye-catching footer */
+            color: var(--flordotro-light-text);
+            font-size: 0.95rem; /* Slightly larger text */
+        }
+        .footer-logo {
+            font-size: 1.8rem; /* Larger logo */
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--flordotro-light-text);
+            margin-bottom: 1.5rem;
+        }
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links li a {
+            color: var(--flordotro-light-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links li a:hover {
+            color: var(--flordotro-petal-fuchsia); /* Fuchsia on hover */
+        }
+        .social-icons a {
+            color: var(--flordotro-light-text);
+            font-size: 1.8rem; /* Larger social icons */
+            margin-right: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--flordotro-petal-yellow); /* Yellow on social icon hover */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-nav {
+                padding: 1rem 0;
+            }
+            .header-logo {
+                font-size: 1.5rem;
+            }
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            .hero-content p {
+                font-size: 1.2rem;
+                max-width: 90%;
+            }
+            .btn-main, .btn-outline-white {
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+                margin: 0.5rem 0; /* Stack buttons */
+            }
+            .btn-outline-white {
+                margin-left: 0;
+            }
+            .section-title-center {
+                font-size: 2.8rem;
+                margin-bottom: 3rem;
+            }
+            .product-image {
+                height: 320px; /* Adjust for mobile */
+            }
+            .product-info h3 {
+                font-size: 1.6rem;
+            }
+            .product-info p {
+                font-size: 1rem;
+            }
+            .product-price {
+                font-size: 1.3rem;
+            }
+            .brand-philosophy-section {
+                padding: 5rem 0;
+            }
+            .brand-philosophy-section p {
+                font-size: 1.2rem;
+                margin-bottom: 2.5rem;
+            }
+            .cta-section {
+                padding: 4rem 0;
+            }
+            .cta-section h2 {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+            .footer {
+                text-align: center;
+            }
+            .footer-logo, .social-icons {
+                margin-bottom: 1.5rem;
+            }
+            .footer-links ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .footer-links li {
+                margin: 0.3rem 0.6rem;
+            }
+            .philosophy-image {
+                height: auto;
+            }
+            .contact-form {
+                margin-top: 2.5rem; /* Add space on mobile */
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Navigation -->
+    <header class="header-nav">
+        <div class="container flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="header-logo"><img src="Logo.png" alt=""></a>
+
+            <!-- Navigation Links (Desktop) -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-10"> <!-- More space between nav items -->
+                    <li><a href="#hero" class="nav-link active">Home</a></li>
+                    <li><a href="#collections" class="nav-link">Collections</a></li>
+                    <li><a href="#about" class="nav-link">Our Story</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li> <!-- New FAQ link -->
+                    <li><a href="#contact" class="nav-link">Contact</a></li> <!-- Existing Contact link -->
+                </ul>
+            </nav>
+
+            <!-- Icons (Cart, Search, Menu Toggle for Mobile) -->
+            <div class="flex items-center space-x-6">
+                <a href="#" class="text-2xl text-white hover:text-gray-200 transition-colors hidden md:block" aria-label="Search"><i class="fas fa-search"></i></a>
+                <a href="#" class="text-2xl text-white hover:text-gray-200 transition-colors" aria-label="Shopping Cart"><i class="fas fa-shopping-bag"></i></a>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="md:hidden text-2xl text-white hover:text-gray-200 focus:outline-none" aria-label="Toggle navigation" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default, toggled by JS) -->
+        <nav id="mobile-menu" class="md:hidden bg-gray-800 py-4 shadow-lg hidden">
+            <ul class="flex flex-col items-center space-y-4">
+                <li><a href="#hero" class="nav-link py-2 text-white" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a></li>
+                <li><a href="#collections" class="nav-link py-2 text-white" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Collections</a></li>
+                <li><a href="#about" class="nav-link py-2 text-white" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Our Story</a></li>
+                <li><a href="#faq" class="nav-link py-2 text-white" onclick="document.getElementById('mobile-menu').classList.add('hidden')">FAQ</a></li> <!-- New FAQ link for mobile -->
+                <li><a href="#contact" class="nav-link py-2 text-white" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a></li> <!-- Existing Contact link for mobile -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-overlay"></div> <!-- Added overlay for better text contrast -->
+            <img 
+                src="dewy-dahlia-bloom-stockcake.jpg" 
+                srcset="dewy-dahlia-bloom-stockcake.jpg 1920w,
+                        dewy-dahlia-bloom-stockcake.jpg 1280w,
+                        dewy-dahlia-bloom-stockcake.jpg 640w"
+                sizes="(max-width: 640px) 100vw, (max-width: 1280px) 100vw, 100vw"
+                alt="An exquisite minimalist floral centerpiece, showcasing elegance and clean lines, perfect for a modern home." 
+                class="hero-image"
+                onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/f5f5f5/1a1a1a?text=Image+Not+Found';"
+            >
+            <div class="hero-content">
+                <h1 class="text-white">Artistry in Every Bloom</h1>
+                <p class="text-white opacity-90 max-w-2xl mx-auto">Experience the fusion of nature and design. Flordotro delivers handcrafted floral arrangements that transform your moments into memories.</p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6"> <!-- More space between buttons -->
+                    <a href="#collections" class="btn-main">Explore Our Collections</a>
+                    <a href="#contact" class="btn-outline-white">Custom Floral Design</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Showcase Section (Collections) -->
+        <section id="collections" class="product-showcase-section">
+            <div class="container">
+                <h2 class="section-title-center">Signature Collections</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"> <!-- More gap between cards -->
+                    <!-- Product Card 1: Seasonal Delights -->
+                    <div class="product-card">
+                        <img src="dahlia-flower-in-the-garden-on-a-dark-background-3d-rendering-ai-generative-image-free-photo.jpg" 
+                            alt="A vibrant seasonal floral arrangement featuring fresh, colorful blooms in a contemporary vase." 
+                            class="product-image"
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/f0f0f0/1a1a1a?text=Image+Not+Found';">
+                        <div class="product-info">
+                            <h3>Vibrant & Wild</h3>
+                            <p>A burst of seasonal color, celebrating the untamed beauty of nature in a chic, modern arrangement.</p>
+                            <span class="product-price">From $85.00</span>
+                            <a href="#" class="btn-shop">Discover Now</a>
+                        </div>
+                    </div>
+                    <!-- Product Card 2: Signature Bouquets -->
+                    <div class="product-card">
+                        <img src="flower-wall-mural-l.jpg" 
+                            alt="A luxurious bouquet of long-stemmed, deep red roses, elegantly arranged for a sophisticated touch." 
+                            class="product-image"
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/f0f0f0/1a1a1a?text=Image+Not+Found';">
+                        <div class="product-info">
+                            <h3>Elegant Classics</h3>
+                            <p>Timeless sophistication meets modern design. Perfect for expressing love, gratitude, or pure admiration.</p>
+                            <span class="product-price">From $110.00</span>
+                            <a href="#" class="btn-shop">Discover Now</a>
+                        </div>
+                    </div>
+                    <!-- Product Card 3: Modern Artistry -->
+                    <div class="product-card">
+                        <img src="360_F_377979192_cedUY4TgPNXkpjyXZoFJIh4Dnc93XIW0.jpg" 
+                            alt="A bold, architectural floral design featuring unique stems and natural elements in a contemporary minimalist vase." 
+                            class="product-image"
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/f0f0f0/1a1a1a?text=Image+Not+Found';">
+                        <div class="product-info">
+                            <h3>Sculptural Statements</h3>
+                            <p>For the bold and the brave. These architectural arrangements are living art for your space.</p>
+                            <span class="product-price">From $150.00</span>
+                            <a href="#" class="btn-shop">Discover Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Philosophy / Our Story Section -->
+        <section id="about" class="brand-philosophy-section">
+            <div class="container">
+                <h2 class="section-title-center">The Flordotro Difference</h2>
+                <!-- Image for Brand Philosophy -->
+                <img src="3.png"
+                     alt="Close-up of a florist's hands delicately arranging flowers, emphasizing craftsmanship and attention to detail."
+                     class="philosophy-image hidden md:block w-full rounded-lg shadow-lg mb-8"
+                     onerror="this.onerror=null; this.src='2.png';">
+                <p>We see flowers as more than just decoration. They are a language, a form of expression, a way to connect with the natural world. At Flordotro, we are dedicated to the art of floral design, sourcing the most exquisite blooms and transforming them into breathtaking arrangements that tell a story. Our commitment to quality, creativity, and sustainability is at the heart of everything we do.</p>
+                <a href="#" class="btn-main">Our Story</a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2 class="section-title-center">Your Questions, Answered</h2>
+                <div class="max-w-3xl mx-auto">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item">
+                        <details>
+                            <summary class="faq-question">How long will my flowers last?</summary>
+                            <div class="faq-answer">
+                                <p>With proper care, our arrangements can last from 5 to 10 days. We include a detailed care card with every order to help you get the most out of your beautiful blooms.</p>
+                            </div>
+                        </details>
+                    </div>
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item">
+                        <details>
+                            <summary class="faq-question">Do you offer same-day delivery?</summary>
+                            <div class="faq-answer">
+                                <p>Yes, we offer same-day delivery for orders placed before 1 PM in our local delivery zones. Please check our delivery page for more information on specific locations and rates.</p>
+                            </div>
+                        </details>
+                    </div>
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item">
+                        <details>
+                            <summary class="faq-question">Can I request a specific flower?</summary>
+                            <div class="faq-answer">
+                                <p>We love custom orders! While we can't guarantee specific flowers due to seasonal availability, we will do our best to accommodate your requests. Contact us to discuss your vision.</p>
+                            </div>
+                        </details>
+                    </div>
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item">
+                        <details>
+                            <summary class="faq-question">What is your return policy?</summary>
+                            <div class="faq-answer">
+                                <p>Due to the perishable nature of flowers, we do not accept returns. However, if you are not satisfied with your arrangement, please contact us within 24 hours of delivery, and we will be happy to assist you.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="product-showcase-section"> <!-- Reusing styling class for consistent padding/bg -->
+            <div class="container">
+                <h2 class="section-title-center">Get in Touch</h2>
+                <div class="contact-section-content grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div style="background-image: url(.png);background-size: cover ;opacity: .8 ;" class="contact-info-block">
+                        <h4>Contact Information</h4>
+                        <p style="color: #000000;"><i class="fas fa-map-marker-alt"></i> 123 Floral Avenue, Bloomsville, FL 45678</p>
+                        <p style="color: #000000;"><i class="fas fa-phone-alt"></i> (555) 123-4567</p>
+                        <p style="color: #000000;"><i class="fas fa-envelope"></i> hello@flordotro.com</p>
+                        <p style="color: #000000;"><i class="fas fa-clock"></i> Mon - Fri: 9am - 6pm | Sat: 10am - 4pm</p>
+                        
+                        <div class="social-icons mt-6">
+                            <h4 style="color: #000000;" class="font-semibold mb-3">Follow Our Journey</h4>
+                            <a style="color: #1016d3;" href="#" aria-label="Facebook" class="text-gray-700 hover:text-red-500 mr-4 text-2xl"><i class="fa-brands fa-facebook"></i></a>
+                            <a style="color: #db48d4;" href="#" aria-label="Instagram" class="text-gray-700 hover:text-red-500 mr-4 text-2xl"><i class="fab fa-instagram"></i></a>
+                            <a style="color: #1a1919;" href="#" aria-label="Pinterest" class="text-gray-700 hover:text-red-500 text-2xl"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h4>Send a Message</h4>
+                        <form>
+                            <div class="mb-4">
+                                <label for="contactName" class="block text-gray-700 text-sm font-bold mb-2">Your Name</label>
+                                <input type="text" class="form-control w-full" id="contactName" placeholder="Enter your name" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="contactEmail" class="block text-gray-700 text-sm font-bold mb-2">Your Email</label>
+                                <input type="email" class="form-control w-full" id="contactEmail" placeholder="Enter your email" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="contactSubject" class="block text-gray-700 text-sm font-bold mb-2">Subject</label>
+                                <input type="text" class="form-control w-full" id="contactSubject" placeholder="What can we help you with?">
+                            </div>
+                            <div class="mb-6">
+                                <label for="contactMessage" class="block text-gray-700 text-sm font-bold mb-2">Message</label>
+                                <textarea class="form-control w-full" id="contactMessage" rows="6" placeholder="Tell us more..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-main">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container grid grid-cols-1 md:grid-cols-5 gap-8">
+            <div class="col-span-full md:col-span-2">
+                <h3 class="footer-logo"><img src="Logo.png" alt=""></h3>
+                <p>Handcrafted floral arrangements for the modern soul.</p>
+                 <div class="social-icons mt-4">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4 style="color: #e74c3c;" class="text-white text-lg mb-4 font-semibold">Explore</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Collections</a></li>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4 style="color: #e74c3c;" class="text-white text-lg mb-4 font-semibold">Learn</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Care Guide</a></li>
+                    <li><a href="#">Workshops</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4 style="color: #e74c3c;" class="text-white text-lg mb-4 font-semibold">Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container text-center mt-8 pt-4 border-t border-gray-700">
+            <p>&copy; 2025 Flordotro. All Rights Reserved | Developed by Zakir Hossain</p>
+        </div>
+    </footer>
+
+</body>
+</html>
